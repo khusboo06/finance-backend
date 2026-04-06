@@ -33,8 +33,8 @@ The project follows a **feature-based modular architecture**:
 * **Routes** → API endpoints
 * **Controllers** → Handle request/response
 * **Services** → Business logic
-* **Models** → Database schemas
-* **Middleware** → Auth, RBAC, validation, error handling
+* **Models** → Database schema
+* **Middleware** → Authentication, RBAC, validation, error handling
 
 This ensures:
 
@@ -65,7 +65,7 @@ finance-backend/
 
 ---
 
-## 🔐 Role-Based Access Control
+## 🔐 Role-Based Access Control (RBAC)
 
 | Role    | Permissions                             |
 | ------- | --------------------------------------- |
@@ -84,14 +84,14 @@ finance-backend/
 ## 🔑 Authentication
 
 * JWT-based authentication
-* Password hashing using bcrypt
-* Token required for all protected routes
+* Secure password hashing using bcrypt
+* Token required for protected routes
 
 ---
 
 ## 💰 Financial Records
 
-Each record includes:
+Each financial record includes:
 
 * Amount
 * Type (income / expense)
@@ -99,11 +99,11 @@ Each record includes:
 * Date
 * Notes
 
-### Capabilities:
+### Features:
 
-* Create (Admin)
-* Read (Admin, Analyst)
-* Filter (type, category)
+* Create records (Admin only)
+* View records (Admin, Analyst)
+* Filtering by type and category
 * Pagination support
 
 ---
@@ -116,26 +116,26 @@ Provides aggregated financial insights:
 * Total Expense
 * Net Balance
 
-Implemented using MongoDB aggregation.
+Implemented using MongoDB aggregation pipelines.
 
 ---
 
 ## 🛡️ Validation & Error Handling
 
-* Input validation using **Joi**
+* Input validation implemented using **Joi**
 * Handles:
 
-  * Invalid input
   * Missing fields
-  * Incorrect data types
-* Centralized error middleware ensures consistent responses
+  * Invalid data types
+  * Incorrect values
+* Global error handling middleware ensures consistent responses
 
 ---
 
 ## 🗄️ Database
 
-* MongoDB used for data persistence
-* Mongoose used for schema modeling
+* MongoDB used as the database
+* Mongoose for schema modeling and queries
 
 ---
 
@@ -159,7 +159,7 @@ Implemented using MongoDB aggregation.
 ### 1. Clone Repository
 
 ```
-git clone <your-repo-link>
+git clone https://github.com/your-username/finance-backend.git
 cd finance-backend
 ```
 
@@ -169,21 +169,41 @@ cd finance-backend
 npm install
 ```
 
-### 3. Configure Environment
+### 3. Configure Environment Variables
 
 Create `.env` file:
 
 ```
 PORT=5000
-MONGO_URI=mongodb://127.0.0.1:27017/financeDB
+MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_secret_key
 ```
 
-### 4. Run Server
+### 4. Run the Server
 
 ```
 npm run dev
 ```
+
+---
+
+## 🌐 Deployment
+
+### 🔗 Live API
+
+https://finance-backend-sq10.onrender.com
+
+### 🚀 Deployment Details
+
+* Deployed on **Render**
+* Database hosted on **MongoDB Atlas**
+* Environment variables configured securely
+
+### 🔄 Deployment Workflow
+
+1. Make changes locally
+2. Push to GitHub
+3. Render automatically redeploys
 
 ---
 
@@ -212,10 +232,10 @@ npm run dev
 
 ## 🧪 Testing
 
-All endpoints were tested using **Postman**, including:
+All APIs were tested using **Postman**, including:
 
 * Authentication flow
-* Role-based access restrictions
+* Role-based access control
 * Validation errors
 * Dashboard aggregation
 
@@ -225,27 +245,31 @@ All endpoints were tested using **Postman**, including:
 
 * Roles are predefined (admin, analyst, viewer)
 * Viewer has access only to dashboard
-* JWT used for authentication
-* MongoDB used for persistence
+* JWT is used for authentication
+* MongoDB is used for persistence
 
 ---
 
-## 🎯 Evaluation Coverage
+## 📌 Important Note
 
-This implementation satisfies:
+Protected routes require a valid JWT token in the Authorization header:
 
-* ✔ Backend Design
-* ✔ Logical Thinking
-* ✔ Functionality
-* ✔ Code Quality
-* ✔ Data Modeling
-* ✔ Validation & Error Handling
-* ✔ Documentation
+```
+Authorization: Bearer <your_token>
+```
+
+These routes cannot be accessed directly via browser without authentication.
 
 ---
+
+
 
 ## 🚀 Conclusion
 
-This project demonstrates a **secure, scalable, and well-structured backend system** with clear separation of concerns and robust role-based access control.
+This project demonstrates a **secure, scalable, and well-structured backend system** with:
 
+* Clear separation of concerns
+* Robust role-based access control
+* Efficient data processing
+* Production-ready practices
 
